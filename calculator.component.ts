@@ -10,7 +10,6 @@ import { Component, Output, EventEmitter } from '@angular/core';
 })
 export class CalculatorComponent {
   @Output() valueSelected = new EventEmitter<string>();
-
   currentValue: string = '';
   /*report to parent component the value that was selected*/
   onButtonClick(value: string) {
