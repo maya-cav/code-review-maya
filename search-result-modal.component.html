@@ -1,0 +1,54 @@
+<div class="modal fade" id="searchResultModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="menu-title">
+                <h3 class="h2 modal-title"> {{Title}}</h3>
+                <p><b>תוצאות עבור:</b> {{searchName}}</p>
+            </div>
+            <!-- the table of data 
+handling when user pick a row , going down&left by arrow -->
+            <div class="container mt-4">
+                <table class="table table-striped table-bordered text-center" id="tableResult"
+                    (keydown)="onKeydown($event)" (keydown.enter)="onEnterRow()" tabindex="0">
+                    <thead class="table-dark">
+                        <tr>
+                            <th *ngFor="let header of headers.reverse()" class="text-secondary">{{ header }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let row of paginatedData; let i =index" (dblclick)="onEnterRow()"
+                            (click)="selectRow(i)" [class.selected]="i === selectedIndex">
+                            <td *ngFor="let cell of row">{{ cell }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Pagination, that come from server -->
+                <div class="additional-bottom">
+                    <button class="btn modal-arrow-btn right-arrow" (click)="setPage(currentPage-1)"
+                        [disabled]="currentPage === 1"><img src="assets/img/right-arrow.svg" alt="right-arrow">לעמוד
+                        הקודם</button>
+                    <div class="pagination">עמוד <span>{{currentPage}}</span> מתוך: {{allPages}}</div>
+                    <button class="btn modal-arrow-btn left-arrow" (click)="setPage(currentPage+1)"
+                        [disabled]="currentPage === allPages">לעמוד הבא<img src="assets/img/left-arrow.svg"
+                            alt="left-arrow"></button>
+                </div>
+            </div>
+            <!-- the buttons who show after the search result table , coming from sever -->
+            <div class="card menu-bottom-card card-row menu-card">
+                <div class="common-operations-card">
+                    <div class="common-operations-card">
+                        <div class="card-item-col" *ngFor="let button of buttonToShow">
+                            <button class="card-item" (click)="buttonActivated(button)">
+                                <img [src]="'assets/img/' + button.imageName + '.svg'" alt="money" />
+                                <span>{{ button.caption }}</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- when type action is 701 -->
+<app-confirm-modal></app-confirm-modal>

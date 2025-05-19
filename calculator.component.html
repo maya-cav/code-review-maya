@@ -1,0 +1,50 @@
+<div class="calculator" (keydown.enter)="onButtonClick('enter')">
+    <div class="row-calc">
+        <div class="calc-btn-col w-65">
+            <button class="minus-btn" (click)="onButtonClick('-')" tabindex="-1">
+                <img src="assets/img/minus.svg" alt="minus">
+            </button>
+        </div>
+        <div class="calc-btn-col w-97">
+            <button class="close-btn" (click)="onButtonClick('*')" tabindex="-1">
+                <img src="assets/img/close.svg" alt="multiply">
+            </button>
+        </div>
+        <div class="calc-btn-col w-97">
+            <button class="backspace-btn" (click)="onButtonClick('backspace')" tabindex="-1">
+                <img src="assets/img/backspace.svg" alt="backspace">
+            </button>
+        </div>
+    </div>
+
+    <div class="row-calc">
+        <div class="calc-btn-col row-calc-right w-65">
+            <button class="plus-btn" (click)="onButtonClick('+')" tabindex="-1">
+                <img src="assets/img/plus.svg" alt="plus">
+            </button>
+        </div>
+        <div class="row-calc row-calc-left">
+            <div class="calc-btn-col w-65" *ngFor="let button of ['9', '8', '7',  '6', '5', '4']">
+                <button (click)="onButtonClick(button)" tabindex="-1">
+                    {{ button }}</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row-calc">
+        <div class="calc-btn-col row-calc-right w-65">
+            <button class="enter-btn" (click)="onButtonClick('enter')" tabindex="-1">
+                <img src="assets/img/enter.svg" alt="enter">
+            </button>
+        </div>
+        <div class="row-calc row-calc-left">
+            <div class="calc-btn-col w-65" *ngFor="let button of ['3', '2', '1',  '.']">
+                <button (click)="onButtonClick(button)" tabindex="-1">
+                    {{ button }}</button>
+            </div>
+            <div class="calc-btn-col w-130">
+                <button (click)="onButtonClick('0')" tabindex="-1">0</button>
+            </div>
+        </div>
+    </div>
+</div>
